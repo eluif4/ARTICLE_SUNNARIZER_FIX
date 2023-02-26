@@ -24,8 +24,9 @@ app.get('/top-headlines', async (req, res) => {
 
 //CONNECTING TO MONGOOSE DB
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
 
-mongoose.connect('mongodb://localhost:27017/my_database', {
+mongoose.connect('mongodb://localhost:27017/articleInformation', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
