@@ -22,6 +22,22 @@ app.get('/top-headlines', async (req, res) => {
     }
 });
 
+//CONNECTING TO MONGOOSE DB
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/my_database', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('MongoDB connected');
+});
+
+//START THE SERVER ON THE LOCALHOST
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
